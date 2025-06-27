@@ -1,0 +1,20 @@
+{
+    "version": 4,
+    "configurations": [
+        {
+            "name": "WinKernel-x64",
+            "includePath": [
+                "${env:WDK_CONTENT_ROOT}/Include/10.0.19041.0/km",
+                "${env:WDK_CONTENT_ROOT}/Include/10.0.19041.0/shared"
+            ],
+            "defines": [
+                "NTDDI_VERSION=0x0A000005",
+                "_WIN32_WINNT=0x0600",
+                "WINVER=0x0600",
+                "UNICODE"
+            ],
+            "compilerPath": "cl.exe",
+            "intelliSenseMode": "msvc-x64"
+        }
+    ]
+}

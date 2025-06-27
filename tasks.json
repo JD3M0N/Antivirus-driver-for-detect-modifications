@@ -1,0 +1,25 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Driver",
+            "type": "shell",
+            "command": "msbuild",
+            "args": [
+                "/t:Build",
+                "/p:Configuration=Debug",
+                "${workspaceFolder}\\MyAVDriver.vcxproj"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "Clean Driver",
+            "type": "shell",
+            "command": "msbuild",
+            "args": [
+                "/t:Clean",
+                "${workspaceFolder}\\MyAVDriver.vcxproj"
+            ]
+        }
+    ]
+}
