@@ -209,7 +209,7 @@ MyAVDriver/
 
 4. **Medición de latencia**
 
-   * En tus callbacks usa:
+   * En los callbacks se usa:
 
      ```cpp
      LARGE_INTEGER start = KeQueryPerformanceCounter(NULL);
@@ -217,7 +217,7 @@ MyAVDriver/
      LARGE_INTEGER end = KeQueryPerformanceCounter(NULL);
      DbgPrint("Callback tardó %llu ticks\n", end.QuadPart - start.QuadPart);
      ```
-   * Ajusta para que cada callback sea ≤ 100 µs en escenarios normales.
+   * Ajustar segun necesitado
 
 ---
 
@@ -237,26 +237,7 @@ MyAVDriver/
   * Un ejecutable o DLL alojará su certificado en la sección de atributos firmados. Validarlo requiere parsear el PE y usar CryptoAPI/BCrypt.
 * **BSOD y estabilidad**
 
-  * Nunca llames a paged pool desde IRQL ≥ DISPATCH\_LEVEL. Todas estas notificaciones son a IRQL = DISPATCH\_LEVEL, por lo que tu lógica debe evitar accesos a paged memory o llamadas que puedan bloquear.
+  * Nunca llamar a paged pool desde IRQL ≥ DISPATCH\_LEVEL. Todas estas notificaciones son a IRQL = DISPATCH\_LEVEL, por lo que la lógica debe evitar accesos a paged memory o llamadas que puedan bloquear.
 
 ---
 
-## 9. Buenas prácticas y siguientes pasos
-
-1. **Entorno aislado**
-
-   * Usa snapshots de tu VM para volver tras cada prueba fallida.
-2. **Logging estructurado**
-
-   * Sustituye `DbgPrintEx` por un anillo en memoria circular y exporta logs vía IOCTL a una aplicación en user-mode.
-3. **Actualización de heurísticas**
-
-   * Diseña un mecanismo para actualizar desde user-mode tu base de hashes/firma.
-4. **Hardening**
-
-   * Protege tu driver contra manipulaciones: firma obligatoria, verifica integridad de tu propio código (PatchGuard).
-5. **Documentación**
-
-   * Mantén tu README con diagramas y flujos, y versiona tu INF y certificados.
-
----
